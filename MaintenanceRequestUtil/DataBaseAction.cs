@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace MaintenanceRequestLibrary
 {
@@ -15,7 +16,7 @@ namespace MaintenanceRequestLibrary
     {
         public static string getConnectionString(string database)
         {
-            //TODO: Move host to config file.
+
             return string.Format("Server=localhost;Database={0};Trusted_Connection=yes;", database);
         }
 

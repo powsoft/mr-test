@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace MaintenanceRequestLibrary
 {
@@ -12,6 +13,10 @@ namespace MaintenanceRequestLibrary
     {
         public string executeProcedure(String procedureName, SortedDictionary<String, Object> procParms )
         {
+           // string dbHost = ConfigurationSettings.AppSettings.Get("db_host");
+            string dbPass = ConfigurationManager.AppSettings.Get("db_host");
+
+
             using (var conn = new SqlConnection(DatabaseAction.getConnectionString(MRDatabase.Main)))
             using (var command = new SqlCommand(procedureName, conn)
             {

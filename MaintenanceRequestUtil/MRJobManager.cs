@@ -12,10 +12,12 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace MaintenanceRequestLibrary
+
 {
     public class MRJobManager
     {
         List<string> MRJobs;
+
 
         public MRJobManager()
         {
@@ -24,7 +26,7 @@ namespace MaintenanceRequestLibrary
             MRJobs.Add("MaintenanceRequests_All_with_PDI_New");
         }
 
-              private Dictionary<int, string> ExecutionStatusDictionary = new Dictionary<int, string>()
+        private Dictionary<int, string> ExecutionStatusDictionary = new Dictionary<int, string>()
         {
             {0, "Not idle or suspended"},
             {1, "Executing"},
