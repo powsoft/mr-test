@@ -13,7 +13,8 @@ namespace MaintenanceRequestLibrary
     {
         public string executeProcedure(String procedureName, SortedDictionary<String, Object> procParms )
         {
-           // string dbHost = ConfigurationSettings.AppSettings.Get("db_host");
+
+
             string dbPass = ConfigurationManager.AppSettings.Get("db_host");
 
 
