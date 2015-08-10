@@ -1,7 +1,7 @@
 ::Set Configuration 
 SET dbhost=WinDev-PC
 SET app_path=C:\Users\WinDev\Documents\GitHub\mr-test
-
+s
 SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 
 mkdir c:\icontrol-mr

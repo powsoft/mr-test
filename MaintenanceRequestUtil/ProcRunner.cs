@@ -11,7 +11,7 @@ namespace MaintenanceRequestLibrary
 {
     public class ProcRunner
     {
-        public string executeProcedure(String procedureName, SortedDictionary<String, Object> procParms )
+        public string executeProcedure(string procedureName, SortedDictionary<String, Object> procParms )
         {
 
 
@@ -28,10 +28,15 @@ namespace MaintenanceRequestLibrary
                 {
                     command.Parameters.Add(new SqlParameter(param.Key, param.Value));
                 }
-
-                conn.Open();
-                command.ExecuteNonQuery();
-                conn.Close();
+                try {
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                    conn.Close();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
 
             return null;

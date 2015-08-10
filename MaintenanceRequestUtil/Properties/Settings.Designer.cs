@@ -58,5 +58,15 @@ namespace MaintenanceRequestLibrary.Properties {
                 return ((string)(this["db_pass"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=WinDev-PC;Initial Catalog=DataTrue_EDI;User ID=sa;Password=root")]
+        public string DataTrue_EDIConnectionString {
+            get {
+                return ((string)(this["DataTrue_EDIConnectionString"]));
+            }
+        }
     }
 }

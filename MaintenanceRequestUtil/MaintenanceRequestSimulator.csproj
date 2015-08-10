@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,10 +30,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,11 +49,27 @@
     <Compile Include="DatabaseAccess\CostModel.cs" />
     <Compile Include="DatabaseAction.cs" />
     <Compile Include="DatabaseAccess\InsertAction.cs" />
+    <Compile Include="DataTrue_EDIDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataTrue_EDIDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EDIMockFactory.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="MRDatabase.cs" />
     <Compile Include="MRJobManager.cs" />
     <Compile Include="ProcRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Validator.cs" />
   </ItemGroup>
@@ -56,10 +78,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="DataTrue_EDIDataSet.xsc">
+      <DependentUpon>DataTrue_EDIDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataTrue_EDIDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataTrue_EDIDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataTrue_EDIDataSet.xss">
+      <DependentUpon>DataTrue_EDIDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="sql\sql_fixture.bat" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="sql\create_mr_databases.sql" />
+    <Content Include="sql\edi\dbo.Temp_PDI_VendorIDs.Table.sql" />
+    <Content Include="sql\main\create_mr_databases.sql" />
     <Content Include="sql\edi\datatrueadmin.User.sql" />
     <Content Include="sql\edi\dbo.acronyms.UserDefinedFunction.sql" />
     <Content Include="sql\edi\dbo.ChainProductFactors.Table.sql" />
@@ -3247,10 +3285,13 @@
     <Content Include="sql\main\sean.User.sql" />
     <Content Include="sql\main\spotlight.User.sql" />
     <Content Include="sql\main\sqlhistorian.User.sql" />
+    <Content Include="sql\main\SqlHistorianEventTrigger.DdlTrigger - Copy.sql" />
     <Content Include="sql\main\SqlHistorianEventTrigger.DdlTrigger.sql" />
     <Content Include="sql\main\SQLTest.User.sql" />
     <Content Include="sql\main\TalS.User.sql" />
+    <Content Include="sql\main\talsql.User - Copy.sql" />
     <Content Include="sql\main\talsql.User.sql" />
+    <Content Include="sql\main\vincesql.User - Copy.sql" />
     <Content Include="sql\main\vincesql.User.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

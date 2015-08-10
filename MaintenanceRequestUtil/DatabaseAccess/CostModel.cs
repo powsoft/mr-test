@@ -37,6 +37,7 @@ namespace MaintenanceRequestLibrary
             cost = 1.0M;
             pdiParticipant = 1;
             upc = System.Guid.NewGuid().ToString();
+            requestStatus = "1";
         }
 
 

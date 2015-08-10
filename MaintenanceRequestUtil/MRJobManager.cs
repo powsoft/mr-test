@@ -37,16 +37,27 @@ namespace MaintenanceRequestLibrary
             {7, "Performing completion actions"}
         };
 
+        private Dictionary<int, string> jobSteps = new Dictionary<int, string>()
+        {
+            //TODO: Build this by hooking to .71 and getting the jobs.
+            {1, "prMR_process_Populate_PDI_CHAIN_SUPPLIER_RELATIONS"},
+            {2, "prMaintenanceRequest_BEFORE_POCESS_COSTS_PROMOTIONS_REC_2014fab03"},
+            //{3, "prUtil_MaintenanceRequest_EDICosts_Load_Newspapers_jun"},
+            //{4, "Between retries"},
+            //{5, "Idle"},
+            //{6, "Suspended"},
+            //{7, "Executing"},
+            //{8, "Waiting for thread"},
+            //{9, "Between retries"},
+            //{10, "Idle"},
+            //{11, "Suspended"},
+            //{12, "Performing completion actions"}
+        };
+
         public void runMRJobs()
         {
-            foreach (string job in MRJobs)
-            {
-                initiateJob(job);
-                while (getStatus(job).Equals("idle") == false)
-                {
-                    Thread.Sleep(3000);
-                }
-            }
+            ProcRunner procedureRunner = new ProcRunner();
+            procedureRunner.executeProcedure(jobSteps.ElementAt(0).Value, new SortedDictionary<string, object>());
         }
 
         private void initiateJob(string job)
