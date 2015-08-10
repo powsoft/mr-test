@@ -11,9 +11,9 @@ namespace MaintenanceRequestLibrary
 {
     public class ProcRunner
     {
-        public string executeProcedure(string procedureName, SortedDictionary<String, Object> procParms )
+        public int executeProcedure(string procedureName, SortedDictionary<String, Object> procParms )
         {
-
+            int affectedRecords = 0;
 
             string dbPass = ConfigurationManager.AppSettings.Get("db_host");
 
@@ -30,7 +30,7 @@ namespace MaintenanceRequestLibrary
                 }
                 try {
                     conn.Open();
-                    command.ExecuteNonQuery();
+                    affectedRecords = command.ExecuteNonQuery();
                     conn.Close();
                 }
                 catch(Exception e)
@@ -39,7 +39,7 @@ namespace MaintenanceRequestLibrary
                 }
             }
 
-            return null;
+            return affectedRecords;
         }
     }
 

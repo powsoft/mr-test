@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintenanceRequestSimulator
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintenanceRequest.Test", "MaintenanceRequest.Test\MaintenanceRequest.Test.csproj", "{A2150360-EE0D-43AE-A8DC-21B6470C1025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{7002D473-4EA1-4ECB-BFFE-2E496DB234BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MR-QA", "WindowsFormsApplication1\MR-QA.csproj", "{7002D473-4EA1-4ECB-BFFE-2E496DB234BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

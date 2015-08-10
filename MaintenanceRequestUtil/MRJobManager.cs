@@ -42,22 +42,28 @@ namespace MaintenanceRequestLibrary
             //TODO: Build this by hooking to .71 and getting the jobs.
             {1, "prMR_process_Populate_PDI_CHAIN_SUPPLIER_RELATIONS"},
             {2, "prMaintenanceRequest_BEFORE_POCESS_COSTS_PROMOTIONS_REC_2014fab03"},
-            //{3, "prUtil_MaintenanceRequest_EDICosts_Load_Newspapers_jun"},
-            //{4, "Between retries"},
-            //{5, "Idle"},
-            //{6, "Suspended"},
-            //{7, "Executing"},
-            //{8, "Waiting for thread"},
-            //{9, "Between retries"},
-            //{10, "Idle"},
-            //{11, "Suspended"},
-            //{12, "Performing completion actions"}
+            {3, "prUtil_MaintenanceRequest_EDICosts_Load_Newspapers_jun"},
+            {4, "prUtil_EDIPromotions_Load_To_MaintenanceRequests_ByStore_New_rule_jun"},
+            {5, "prUtil_EDIPromotions_Load_To_MaintenanceRequests_ZoneOrBanner_Job_New_jun"},
+            {6, "prUtil_MaintenanceRequest_EDICosts_Load_job_storeLevel_jun"},
+            {7, "prUtil_MaintenanceRequest_EDICosts_Load_job_New_Rule_jun"},
+            {8, "prUtil_EDIPromotions_Load_To_MaintenanceRequests_ByStore_New_PDI_jun"},
+            {9, "prUtil_EDIPromotions_Load_To_MaintenanceRequests_ZoneOrBanner_Job_New_PDI_jun"},
+            {10, "prUtil_MaintenanceRequest_EDICosts_Load_Job_StoreLevel_PDI_jun"},
+            {11, "prUtil_MaintenanceRequest_EDICosts_Load_Job_Rule_PDI_jun"},
+            {12, "AIL_2014fab03prMaintenanceRequest_NOT_MOVED_EM"},
+            {13, "prMaintenanceRequest_SupplierLoginID_Populate"}
+
         };
 
         public void runMRJobs()
         {
             ProcRunner procedureRunner = new ProcRunner();
-            procedureRunner.executeProcedure(jobSteps.ElementAt(0).Value, new SortedDictionary<string, object>());
+            foreach(KeyValuePair<int, string> proc in jobSteps) {
+                String res = procedureRunner.executeProcedure(proc.Value, new SortedDictionary<string, object>());
+                Console.WriteLine("Procedure-" + proc.Key + ": "+ res);
+            }
+
         }
 
         private void initiateJob(string job)
