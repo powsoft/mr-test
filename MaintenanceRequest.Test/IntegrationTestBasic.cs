@@ -1,16 +1,28 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MaintenanceRequestLibrary;
-
 namespace MaintenanceRequestLibrary.Test
 {
-  [TestClass]
+
+
+
+    [TestClass]
   public class IntegrationTestBasic
   {
-    [TestMethod]
+
+        [TestInitialize]
+        public void initialize()
+        {
+            Logger.Log("****STARTING TEST*****");
+        }
+
+
+
+        [TestMethod]
+        [Description("Tests basic insert of cost record")]
     public void TestBasicCostRecordSaves()
     {
-            Logger.Log("****STARTING TEST*****");
+            
        
             //Generate a standard Cost record
             var costRecord = new CostModel("ABCTEST");

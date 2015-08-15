@@ -31,27 +31,27 @@ ECHO *****FINISHED CREATING MAINTENANCE REQUEST DATABASES******
 ::TODO: Pull full repository from bitbucket, then script the a copy of only the MR Procedures, Tables, etc.
 
 ::Create all MR tables in the DataTrue_EDI database
-for %%G in (./edi/*Table.sql)^
+for %%G in (./sql/edi/*Table.sql)^
 do sqlcmd /S %dbhost% /d DataTrue_EDI -E -i "%app_path%\MaintenanceRequestUtil\sql\edi\%%G"
 
 ::Create all MR tables in the DataTrue_Main database
-for %%G in (./main/*Table.sql)^
+for %%G in (./sql/main/*Table.sql)^
 do sqlcmd /S %dbhost% /d DataTrue_Main -E -i "%app_path%\MaintenanceRequestUtil\sql\main\%%G"
 
 ::Create all MR functions in the DataTrue_EDI database
-for %%G in (./edi/*Function.sql)^
+for %%G in (./sql/edi/*Function.sql)^
 do sqlcmd /S %dbhost% /d DataTrue_EDI -E -i "%app_path%\MaintenanceRequestUtil\sql\edi\%%G"
 
 ::Create all MR tables in the DataTrue_Main database
-for %%G in (./main/*Function.sql)^
+for %%G in (./sql/main/*Function.sql)^
 do sqlcmd /S %dbhost% /d DataTrue_Main -E -i "%app_path%\MaintenanceRequestUtil\sql\main\%%G"
 
 ::Create all MR tables in the DataTrue_EDI database
-for %%G in (./edi/*Procedure.sql)^
+for %%G in (./sql/edi/*Procedure.sql)^
 do sqlcmd /S %dbhost% /d DataTrue_EDI -E -i "%app_path%\MaintenanceRequestUtil\sql\edi\%%G"
 
 ::Create all MR tables in the DataTrue_Main database
-for %%G in (./main/*Procedure.sql)^
+for %%G in (./sql/main/*Procedure.sql)^
 do sqlcmd /S %dbhost% /d DataTrue_Main -E -i "%app_path%\MaintenanceRequestUtil\sql\main\%%G"
 
 

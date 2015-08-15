@@ -2,3 +2,12 @@
 {
 
 }
+
+namespace MaintenanceRequestLibrary.DatabaseAccess
+{
+
+
+    partial class DataTrue_EDIDataSet
+    {
+    }
+}
