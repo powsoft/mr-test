@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MaintenanceRequestLibrary;
 
 namespace MaintenanceRequestLibrary.Test
 {
@@ -9,20 +10,25 @@ namespace MaintenanceRequestLibrary.Test
     [TestMethod]
     public void TestBasicCostRecordSaves()
     {
-        //Generate a standard Cost record
-        var costRecord = new CostModel("ABCTEST");
-        string statement = EDIMockFactory.createCostRecord(costRecord);
+            Logger.Log("****STARTING TEST*****");
+       
+            //Generate a standard Cost record
+            var costRecord = new CostModel("ABCTEST");
+            string statement = EDIMockFactory.createCostRecord(costRecord);
 
-        //Execute the statement against the DataTrue_EDI database, and get the number of rows affected
-        int affectedRows = new DatabaseAction().execute(statement, MRDatabase.EDI);
+            //Execute the statement against the DataTrue_EDI database, and get the number of rows affected
+            int affectedRows = new DatabaseAction().execute(statement, MRDatabase.EDI);
 
-        //Make sure that one row was inserted
-        Assert.AreEqual(affectedRows, 1);
+            //Make sure that one row was inserted
+            Assert.AreEqual(affectedRows, 1);
     }
 
     [TestMethod]
     public void TestThatCostRecordForNewItemCreatesANewItem()
     {
+
+        
+        
         //Generate a standard Cost record
         var newCostRecord = new CostModel("NEWITEMTEST");
         newCostRecord.requestTypeId = 1;

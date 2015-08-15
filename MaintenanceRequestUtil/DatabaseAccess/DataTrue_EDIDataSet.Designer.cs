@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace MaintenanceRequestLibrary {
+namespace MaintenanceRequestLibrary.DatabaseAccess {
     
     
     /// <summary>
@@ -65,6 +65,8 @@ namespace MaintenanceRequestLibrary {
         private SuppliersDataTable tableSuppliers;
         
         private Temp_PDI_VendorIDsDataTable tableTemp_PDI_VendorIDs;
+        
+        private global::System.Data.DataRelation relationFK_Stores_costs;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -674,6 +676,7 @@ namespace MaintenanceRequestLibrary {
                     this.tableTemp_PDI_VendorIDs.InitVars();
                 }
             }
+            this.relationFK_Stores_costs = this.Relations["FK_Stores_costs"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -726,6 +729,18 @@ namespace MaintenanceRequestLibrary {
             base.Tables.Add(this.tableSuppliers);
             this.tableTemp_PDI_VendorIDs = new Temp_PDI_VendorIDsDataTable();
             base.Tables.Add(this.tableTemp_PDI_VendorIDs);
+            global::System.Data.ForeignKeyConstraint fkc;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Stores_costs", new global::System.Data.DataColumn[] {
+                        this.tableStores.ChainIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tablecosts.dtchainidColumn});
+            this.tablecosts.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            this.relationFK_Stores_costs = new global::System.Data.DataRelation("FK_Stores_costs", new global::System.Data.DataColumn[] {
+                        this.tableStores.ChainIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tablecosts.dtchainidColumn}, false);
+            this.Relations.Add(this.relationFK_Stores_costs);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3814,7 +3829,7 @@ namespace MaintenanceRequestLibrary {
                         string DateCreated, 
                         string PriceListNumber, 
                         short RecordStatus, 
-                        int dtchainid, 
+                        StoresRow parentStoresRowByFK_Stores_costs, 
                         int dtstoreid, 
                         int dtproductid, 
                         int dtbrandid, 
@@ -3940,7 +3955,7 @@ namespace MaintenanceRequestLibrary {
                         DateCreated,
                         PriceListNumber,
                         RecordStatus,
-                        dtchainid,
+                        null,
                         dtstoreid,
                         dtproductid,
                         dtbrandid,
@@ -4020,6 +4035,9 @@ namespace MaintenanceRequestLibrary {
                         FileType,
                         GTIN,
                         SyncToRetailer};
+                if ((parentStoresRowByFK_Stores_costs != null)) {
+                    columnValuesArray[44] = parentStoresRowByFK_Stores_costs[1];
+                }
                 rowcostsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcostsRow);
                 return rowcostsRow;
@@ -11070,8 +11088,11 @@ namespace MaintenanceRequestLibrary {
                 base.Columns.Add(this.columnClassOfTrade);
                 this.columnLegacySystemStoreIdentifier = new global::System.Data.DataColumn("LegacySystemStoreIdentifier", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLegacySystemStoreIdentifier);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnChainID}, false));
                 this.columnStoreID.AllowDBNull = false;
                 this.columnChainID.AllowDBNull = false;
+                this.columnChainID.Unique = true;
                 this.columnStoreName.AllowDBNull = false;
                 this.columnStoreName.MaxLength = 50;
                 this.columnStoreIdentifier.AllowDBNull = false;
@@ -16014,6 +16035,17 @@ namespace MaintenanceRequestLibrary {
                 }
                 set {
                     this[this.tablecosts.SyncToRetailerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public StoresRow StoresRow {
+                get {
+                    return ((StoresRow)(this.GetParentRow(this.Table.ParentRelations["FK_Stores_costs"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Stores_costs"]);
                 }
             }
             
@@ -22583,6 +22615,17 @@ namespace MaintenanceRequestLibrary {
             public void SetLegacySystemStoreIdentifierNull() {
                 this[this.tableStores.LegacySystemStoreIdentifierColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public costsRow[] GetcostsRows() {
+                if ((this.Table.ChildRelations["FK_Stores_costs"] == null)) {
+                    return new costsRow[0];
+                }
+                else {
+                    return ((costsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Stores_costs"])));
+                }
+            }
         }
         
         /// <summary>
@@ -24591,7 +24634,7 @@ namespace MaintenanceRequestLibrary {
         }
     }
 }
-namespace MaintenanceRequestLibrary.DataTrue_EDIDataSetTableAdapters {
+namespace MaintenanceRequestLibrary.DatabaseAccess.DataTrue_EDIDataSetTableAdapters {
     
     
     /// <summary>
@@ -33725,6 +33768,15 @@ SELECT PDI_VendorIdentifier, PDI_VendorName FROM PDI_Vendors WHERE (PDI_VendorId
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(DataTrue_EDIDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._storesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Stores.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._storesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._chain_Supplier_CrossReferenceTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Chain_Supplier_CrossReference.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -33740,15 +33792,6 @@ SELECT PDI_VendorIdentifier, PDI_VendorName FROM PDI_Vendors WHERE (PDI_VendorId
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._storesetupTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._storesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Stores.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._storesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -33924,6 +33967,14 @@ SELECT PDI_VendorIdentifier, PDI_VendorName FROM PDI_Vendors WHERE (PDI_VendorId
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(DataTrue_EDIDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._storesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Stores.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._storesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._chain_Supplier_CrossReferenceTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Chain_Supplier_CrossReference.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -33937,14 +33988,6 @@ SELECT PDI_VendorIdentifier, PDI_VendorName FROM PDI_Vendors WHERE (PDI_VendorId
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._storesetupTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._storesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Stores.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._storesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -34246,14 +34289,6 @@ SELECT PDI_VendorIdentifier, PDI_VendorName FROM PDI_Vendors WHERE (PDI_VendorId
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._storesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Stores.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._storesTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._storesetupTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.storesetup.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -34267,6 +34302,14 @@ SELECT PDI_VendorIdentifier, PDI_VendorName FROM PDI_Vendors WHERE (PDI_VendorId
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._chain_Supplier_CrossReferenceTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._storesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Stores.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._storesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
