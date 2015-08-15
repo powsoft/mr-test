@@ -6,6 +6,8 @@
 ::    3.) TODO: Updates
 SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 
+::Set output of this file to startup.log
+command > c:\startup.log
 
 ::Set Configuration 
 SET dbhost=WinDev-PC

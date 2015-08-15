@@ -18,12 +18,11 @@ namespace MaintenanceRequestLibrary.Test
 
 
 
-        [TestMethod]
-        [Description("Tests basic insert of cost record")]
+
+    [TestMethod]
+    [Description("Tests basic insert of cost record")]
     public void TestBasicCostRecordSaves()
     {
-            
-       
             //Generate a standard Cost record
             var costRecord = new CostModel("ABCTEST");
             string statement = EDIMockFactory.createCostRecord(costRecord);
@@ -37,10 +36,7 @@ namespace MaintenanceRequestLibrary.Test
 
     [TestMethod]
     public void TestThatCostRecordForNewItemCreatesANewItem()
-    {
-
-        
-        
+    { 
         //Generate a standard Cost record
         var newCostRecord = new CostModel("NEWITEMTEST");
         newCostRecord.requestTypeId = 1;
