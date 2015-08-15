@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -51,7 +47,7 @@ namespace MaintenanceRequestLibrary
             {9, "prUtil_EDIPromotions_Load_To_MaintenanceRequests_ZoneOrBanner_Job_New_PDI_jun"},
             {10, "prUtil_MaintenanceRequest_EDICosts_Load_Job_StoreLevel_PDI_jun"},
             {11, "prUtil_MaintenanceRequest_EDICosts_Load_Job_Rule_PDI_jun"},
-            {12, "AIL_2014fab03prMaintenanceRequest_NOT_MOVED_EM"},
+            {12, "prMaintenanceRequest_NOT_MOVED_EMAIL_2014fab03"},
             {13, "prMaintenanceRequest_SupplierLoginID_Populate"}
 
         };
@@ -60,11 +56,26 @@ namespace MaintenanceRequestLibrary
         {
             ProcRunner procedureRunner = new ProcRunner();
             foreach(KeyValuePair<int, string> proc in jobSteps) {
-                String res = procedureRunner.executeProcedure(proc.Value, new SortedDictionary<string, object>());
-                Console.WriteLine("Procedure-" + proc.Key + ": "+ res);
+
+                //Track the duration of the stored procedure.
+                DateTime startTime = new DateTime();
+                Logger.Log("Running Procedule #" + proc.Key + " : " + proc.Value);
+
+                //Executes a stored procedure
+                int res = procedureRunner.executeProcedure(
+                    proc.Value, new SortedDictionary<string, object>());
+
+                //Log result
+                Logger.Log("Complete" + proc.Key +
+                         ": Total MS: " + new DateTime().Subtract(startTime).TotalMilliseconds +
+                         " Total affected rows: " + res);
             }
 
-        }
+            //TODO: Experiment with adapters..
+            DataTrue_EDIDataSetTableAdapters.costsTableAdapter adapter  = 
+                        new DataTrue_EDIDataSetTableAdapters.costsTableAdapter();
+            
+}
 
         private void initiateJob(string job)
         {
