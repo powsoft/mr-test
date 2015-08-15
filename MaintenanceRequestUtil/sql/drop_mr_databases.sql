@@ -1,0 +1,2 @@
+DROP DATABASE DataTrue_Main;
+DROP DATABASE DataTrue_EDI;

@@ -1,9 +1,16 @@
+::Author: Timothy Powell
+::Date: 8/08/2015
+::Description: This batch script initializes the MR-QA development environment.
+::    1.) Creates directories where DataTrue_EDI and DataTrue_Main data logs will be stored
+::    2.) Creates databases, imports tables first, then functions, then procedures.
+::    3.) TODO: Updates
+SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
+
+
 ::Set Configuration 
 SET dbhost=WinDev-PC
 SET app_path=C:\Users\WinDev\Documents\GitHub\mr-test
 
-
-SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 
 ::TODO Add option to drop databases and start from scratch
 
@@ -11,6 +18,10 @@ SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 mkdir c:\icontrol-mr
 mkdir c:\icontrol-mr\data
 mkdir c:\icontrol-mr\data-log
+
+ECHO *****Dropping MR_Databases******
+::Run database deletion scripts
+sqlcmd -S %dbhost% -i drop_mr_databases.sql
 
 ::Run database creation scripts
 sqlcmd -S %dbhost% -i create_mr_databases.sql
