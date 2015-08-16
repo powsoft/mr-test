@@ -41,9 +41,8 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MaintenanceRequestUtil\lib\log4net.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\MaintenanceRequestSimulator\lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -79,12 +78,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MaintenanceRequestUtil\MaintenanceRequestSimulator.csproj">
-      <Project>{e306059e-9905-4f7c-9826-a17f4385345a}</Project>
-      <Name>MaintenanceRequestSimulator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -98,6 +91,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MaintenanceRequestSimulator\MaintenanceRequestSimulator.csproj">
+      <Project>{e306059e-9905-4f7c-9826-a17f4385345a}</Project>
+      <Name>MaintenanceRequestSimulator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
