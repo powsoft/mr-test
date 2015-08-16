@@ -62,7 +62,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataTrue_EDIDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="EDIMockFactory.cs" />
+    <Compile Include="DatabaseAccess\EDIMockFactory.cs" />
     <Compile Include="DatabaseAccess\MRDatabase.cs" />
     <Compile Include="jobs\MRJobManager.cs" />
     <Compile Include="DatabaseAccess\ProcRunner.cs" />
@@ -94,7 +94,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="sql\sql_fixture.bat" />
+    <None Include="setup.bat" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="sql\drop_mr_databases.sql" />
@@ -178,6 +178,8 @@
     <Content Include="sql\main\prMaintenanceRequest_NOT_MOVED_EMAIL_2014fab.Procedure.sql" />
     <Content Include="sql\main\prMaintenanceRequest_SupplierLoginID_Populate.Procedure.sql" />
     <Content Include="sql\main\SupplierStoreProductContextMethod.Table.sql" />
+    <Content Include="sql\drop_stored_procedures.sql" />
+    <None Include="sql\update_stored_procedures.bat" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,10 +23,10 @@ mkdir c:\icontrol-mr\data-log
 
 ECHO *****Dropping MR_Databases******
 ::Run database deletion scripts
-sqlcmd -S %dbhost% -i drop_mr_databases.sql
+sqlcmd -S %dbhost% -i .\sql\drop_mr_databases.sql
 
 ::Run database creation scripts
-sqlcmd -S %dbhost% -i create_mr_databases.sql
+sqlcmd -S %dbhost% -i .\sql\create_mr_databases.sql
 ECHO *****FINISHED CREATING MAINTENANCE REQUEST DATABASES******
 
 

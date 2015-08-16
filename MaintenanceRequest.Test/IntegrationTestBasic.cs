@@ -10,11 +10,21 @@ namespace MaintenanceRequestLibrary.Test
   public class IntegrationTestBasic
   {
 
-        [TestInitialize]
-        public void initialize()
-        {
-            Logger.Log("****STARTING TEST*****");
-        }
+        //TestContext TestContext { get; set; }
+
+        //[TestInitialize]
+        //public void testInitialize()
+        //{
+        //    string test = TestContext.TestName;
+        //    Logger.Log("****STARTING "+ test +"*****");
+        //}
+
+        //[TestCleanup]
+        //public void testCleanup()
+        //{
+        //    string test = TestContext.TestName;
+        //    Logger.Log("****CLEANUP "+ test +"*****");
+        //}
 
 
 

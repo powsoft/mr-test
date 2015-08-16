@@ -23,5 +23,10 @@ namespace WindowsFormsApplication1
         {
             new MRJobManager().runMRJobs();
         }
+
+        private void MRQAUI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

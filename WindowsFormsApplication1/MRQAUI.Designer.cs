@@ -49,6 +49,7 @@
             this.Controls.Add(this.button1);
             this.Name = "MRQAUI";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MRQAUI_Load);
             this.ResumeLayout(false);
 
         }
