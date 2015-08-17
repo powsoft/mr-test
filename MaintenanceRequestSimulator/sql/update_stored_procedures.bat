@@ -19,4 +19,4 @@ do sqlcmd /S %dbhost% /d DataTrue_EDI -E -i "%app_path%\sql\edi\procedures\%%G"
 
 ::Create all MR tables in the DataTrue_Main database
 for %%G in (./main/procedures/*Procedure.sql)^
-do sqlcmd /S %dbhost% /d DataTrue_Main -E -i "%app_path%\sql\main\procedures\%%G"
+do sqlcmd /S %dbhost% /d DataTrue_Main -E -i "%app_path%/sql/main/procedures\%%G"

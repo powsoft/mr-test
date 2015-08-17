@@ -14,11 +14,18 @@ GO
 CREATE TABLE [dbo].[MRExceptionDetail](
 	[id] [bigint] NULL,
 	[source] [char](1) NULL,
+	[sourceId] [char](1) NULL,
 	[exceptionType] [int] NULL,
 	[date] [datetime] NULL
 ) ON [PRIMARY]
 
 GO
+
+CREATE TYPE MRException AS TABLE
+	( recordId INT
+	 ,source CHAR(1)
+	 ,exceptionType INT
+	);
 
 SET ANSI_PADDING OFF
 GO

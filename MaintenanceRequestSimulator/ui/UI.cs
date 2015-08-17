@@ -23,7 +23,10 @@ namespace MaintenanceRequestLibrary.ui
         private void runJobBtn_Click(object sender, EventArgs e)
         {
             //Update stored procedures
-            ExecuteCommand("../../sql/update_stored_procedures.bat");
+            //ExecuteCommand("../../sql/update_stored_procedures.bat");
+
+            logBox.Items.Clear();
+            logBox.Items.Add("Running MR Tests...");
 
             //Run the jobs!
             new MRJobManager().runMRJobs();
@@ -39,6 +42,7 @@ namespace MaintenanceRequestLibrary.ui
                 proc.StartInfo.RedirectStandardError = true;
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.UseShellExecute = false;
+                //proc.StartInfo.WorkingDirectory = @"..\..\sql\";
 
                 proc.Start();
 

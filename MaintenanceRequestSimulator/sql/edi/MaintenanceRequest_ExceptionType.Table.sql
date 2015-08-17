@@ -1,7 +1,7 @@
 USE [DataTrue_EDI]
 GO
 
-/****** Object:  Table [dbo].[MRException]    Script Date: 8/13/2015 4:46:24 PM ******/
+/****** Object:  Table [dbo].[MRException]    Script Date: 8/17/2015 12:31:59 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -20,6 +20,33 @@ CREATE TABLE [dbo].[MRException](
 
 GO
 
+INSERT INTO [dbo].[MRException]
+           ([id]
+           ,[description]
+           ,[severity]
+           ,[notify])
+     VALUES
+           (1
+           ,'Missing Chain ID'
+           ,10
+           ,0);
+
+INSERT INTO [dbo].[MRException]
+           ([id]
+           ,[description]
+           ,[severity]
+           ,[notify])
+     VALUES
+           (2
+           ,'Missing Supplier ID'
+           ,10
+           ,0);
+GO
+
+
+
 SET ANSI_PADDING OFF
 GO
+
+
 
