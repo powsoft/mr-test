@@ -2,6 +2,8 @@
 ::Date: 8/11/2015
 ::Description: This batch script updates all stored procedures with updates from the solution.
 ::    1.) Drop all stored procedures in datatrue main
+::    2.) Reimport all procedures
+
 
 SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 

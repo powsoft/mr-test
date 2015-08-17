@@ -60,5 +60,9 @@ namespace MaintenanceRequestLibrary.ui
             }
         }
 
+        private void logBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -67,6 +67,7 @@
       <DependentUpon>UI.cs</DependentUpon>
     </Compile>
     <Compile Include="ui\UIInit.cs" />
+    <Compile Include="util\LogListener.cs" />
     <Compile Include="util\Logger.cs" />
   </ItemGroup>
   <ItemGroup>

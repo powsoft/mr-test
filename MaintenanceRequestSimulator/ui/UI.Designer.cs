@@ -1,6 +1,9 @@
-﻿namespace MaintenanceRequestLibrary.ui
+﻿using System;
+using MaintenanceRequestLibrary.util;
+
+namespace MaintenanceRequestLibrary.ui
 {
-    partial class UI
+    partial class UI : LogListener
     {
         /// <summary>
         /// Required designer variable.
@@ -60,6 +63,8 @@
             this.logBox.Name = "logBox";
             this.logBox.Size = new System.Drawing.Size(491, 500);
             this.logBox.TabIndex = 2;
+            this.logBox.SelectedIndexChanged += new System.EventHandler(this.logBox_SelectedIndexChanged);
+
             // 
             // UI
             // 
@@ -73,6 +78,21 @@
             this.Text = "UI";
             this.ResumeLayout(false);
 
+            //Push log events to the UI.
+            Logger.registerLogListener(this);
+            Logger.Log("Maintenance Request Ready....");
+        }
+
+        public void logEvent(string ev, Exception e)
+        {
+            this.logBox.Items.Add(ev);
+            if(e != null)
+            {
+                logBox.Items.Add(e.Message);
+            }
+
+            int visibleItems = logBox.ClientSize.Height / logBox.ItemHeight;
+            logBox.TopIndex = Math.Max(logBox.Items.Count - visibleItems + 1, 0);
         }
 
         #endregion
